@@ -40,9 +40,10 @@ tag_pw = driver.find_element(By.ID, "login_pwd")
 tag_id.clear()
 tag_id.send_keys(account["id"])
 tag_pw.send_keys(account["pw"])
-driver.find_element(By.CSS_SELECTOR,
-                    "#loginForm > div.checkbox.primary.text-primary.text-center.m-t-md > button"
-                    ).click()
+login_button = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable((By.CLASS_NAME, "btn-login"))
+)
+login_button.click()
 
 try:
     time.sleep(1)
